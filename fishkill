@@ -1,6 +1,6 @@
 #!/bin/bash
 # fish - jfsc@cin.ufpe.br
-#killing multiple processes
+# killing multiple processes
 #
 processtokill=$1
 case $processtokill in
