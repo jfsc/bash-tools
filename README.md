@@ -1,2 +1,2 @@
 # bash-tools
-stuffs that i can't repeat in may days.
+stuffs that I can't repeat in my days.
