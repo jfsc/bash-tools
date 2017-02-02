@@ -1,0 +1,21 @@
+#!/bin/bash
+# fish - jfsc@cin.ufpe.br
+#killing multiple processes
+#
+processtokill=$1
+case $processtokill in
+	[A-Za-z]*)
+		ps aux |grep -e $processtokill -v $0| awk '{print $2}'| while read CMD; do kill -9 $CMD 2> /dev/null; done
+		if [ $? -eq 0 ]; then
+			Message="Process $processtokill killed."
+		else 
+			Message="Process not exits."
+		fi
+  	;;
+	*)
+  		Message="Usage: $0 {service name}"
+  	;;
+esac
+
+echo $Message;
+
