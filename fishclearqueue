@@ -1,0 +1,17 @@
+
+#!/bin/bash
+# fish - jfsc@cin.ufpe.br
+# Cleaning postfix queue
+#
+email=$1
+case $email in
+	[A-Za-z]*)
+		$(ps aux |grep $email | awk '{print $1}'| while read CMD; do postsuper -d -$CMD; done;);
+		Message="Queue has been cleaned."
+  	;;
+	*)
+  		Message="Usage: $0 {email}"
+  	;;
+esac
+
+echo $Message;
