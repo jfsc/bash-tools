@@ -6,7 +6,7 @@
 email=$1
 case $email in
 	[A-Za-z]*)
-		$(ps aux |grep $email | awk '{print $1}'| while read CMD; do postsuper -d -$CMD; done;);
+		$(mailq |grep $email | awk '{print $1}'| while read CMD; do postsuper -d $CMD; done;);
 		Message="Queue has been cleaned."
   	;;
 	*)
