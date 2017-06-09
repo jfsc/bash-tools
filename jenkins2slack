@@ -1,0 +1,21 @@
+# Shell: sh
+# author: fish
+# send feedback to slack
+# requirement: jenkins 2.46
+
+#Slack integration url
+slack_url="https://hooks.slack.com/services/..."
+
+#Jenkins data
+user="user"
+pass="pass"
+jobname="job"
+result_xml=$(curl http://$user:$pass@localhost:8080/job/ProjetoDevOps/job/$jobname/lastBuild/api/xml?xpath=/*/result)
+result=${result_xml:8:-9}
+
+
+if [ $result == "FAILURE" ]
+ then
+  curl -X POST -H 'Content-type: application/json' \
+   	--data '{"text":"Status do projeto: '$result'!"}' $slack_url
+fi
